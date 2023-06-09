@@ -3,11 +3,13 @@
 const routes = require('express').Router();
 
 // Import the functions from the Controller
-const myController = require('../controllers/index.js');
+const professionalController = require('../controllers/professional');
 
 
-// Calling the function:
-routes.get('/', myController.imLearningFunction);
+// GET /feed/posts
+// Calling the function: 
+routes.get('/', professionalController.getData);
+// localhost:8080/professional/
 
 
 // exports the routes

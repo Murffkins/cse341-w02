@@ -1,0 +1,24 @@
+{
+    "user": {   
+        "professionalName": "Nicole Murff",
+        "nameLink": {
+            "firstName": "Nicole",
+            "url": "https://www.linkedin.com/in/nicole-perkins-murff/"
+        },
+        "base64Image": "Picture3.jpg",
+        "firstName": "Nicole",
+        "primaryDescription": " is a student at BYU-Idaho",
+        "workDescription1": "She is a Domestic Enigineer.",
+        "workDescription2": "She specializes in transportation, general health and finances, inventory management, and escalations.",
+        "linkTitleText": "Check out her work below",
+        "linkedInLink": {
+            "link": "https://www.linkedin.com/in/nicole-perkins-murff/",
+            "text": "LinkedIn"
+        },
+        "githubLink": {
+            "link": "https://github.com/Murffkins",
+            "text": "GitHub"
+        },
+        "contactText": "Feel free to contact her at mur20031@byui.edu."
+    }
+}
