@@ -2,13 +2,11 @@
 
 const routes = require('express').Router();
 
-// Import the functions from the Controller
-const professionalController = require('../controllers/professional');
 
 
 // GET /feed/posts
 // Calling the function: 
-routes.get('/', professionalController.getData);
+routes.use('/contacts', require('./contacts'));
 // localhost:8080/professional/
 
 

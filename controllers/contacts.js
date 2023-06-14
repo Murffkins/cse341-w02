@@ -1,17 +1,29 @@
 // Where you put all of your logic to keep routes uncluttered (Define functions)
 
 const mongodb = require('../db/connect');
+const ObjectId = require('mongodb').ObjectId;
 
-const getData = async (req, res, next) => {
+// Get all the 'contacts' data
+const getAllData = async (req, res, next) => {
     // Uses 'getDb' instead of 'initDb'
-    const result = await mongodb.getDb().db().collection('user').find();
+    const result = await mongodb.getDb().db().collection('contacts').find();
     result.toArray().then((lists) => {
         res.setHeader('Content-Type', 'application/json');
-        res.status(200).json(lists[0]); 
+        res.status(200).json(lists); 
     });
 };
 
-module.exports = { getData };
+// Get a single 'contact' data
+const getSingleData = async (req, res, next) => {
+  const userId = new ObjectId(req.params.id);
+  const result = await mongodb.getDb().db().collection('contacts').find({_id: userId});
+  result.toArray().then((lists) => {
+    res.setHeader('Content-Type', 'application/json');
+    res.status(200).json(lists[0]);
+  });
+};
+
+module.exports = { getAllData, getSingleData };
 
 // An object named 'data'
 // const data = {

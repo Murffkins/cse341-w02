@@ -1,0 +1,23 @@
+{
+    "contact": {
+        "firstName":"Daniel",
+        "lastName":"Murff",
+        "email":"perkins_n@hotmail.com",
+        "favoriteColor":"Black",
+        "birthday":"07/29/1985"
+    },
+    "contact2": {
+        "firstName":"Brett",
+        "lastName":"Murff",
+        "email":"perkins_n@hotmail.com",
+        "favoriteColor":"Blue",
+        "birthday":"11/03/2008"
+    },
+    "contact3": {
+        "firstName":"Ryan",
+        "lastName":"Murff",
+        "email":"perkins_n@hotmail.com",
+        "favoriteColor":"Red",
+        "birthday":"02/05/2010"
+    }
+}
