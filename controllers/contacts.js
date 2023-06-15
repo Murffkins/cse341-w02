@@ -23,7 +23,56 @@ const getSingleData = async (req, res, next) => {
   });
 };
 
-module.exports = { getAllData, getSingleData };
+// Create a new 'contact'
+const createContact = async (req, res) => {
+    const contact = {
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        email: req.body.email,
+        favoriteColor: req.body.favoriteColor,
+        birthday: req.body.birthday
+    };
+    const response = await mongodb.getDb().db().collection('contacts').insertOne(contact);
+    if (response.acknowledged) {
+        res.status(201).json(response);
+    } else {
+        res.status(500).json(response.error || 'Some error occured while creating the contact');
+    }
+};
+
+// Update a 'contact'
+const updateContact = async (req, res) => {
+    const userId = new ObjectId(req.params.id);
+    // Be aware of updateOne if you only want to update specific fields
+    const contact = {
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        email: req.body.email,
+        favoriteColor: req.body.favoriteColor,
+        birthday: req.body.birthday
+    };
+    const response = await mongodb.getDb().db().collection('contacts').replaceOne({_id: userId}, contact);
+    console.log(response);
+    if (response.modifiedCount > 0) {
+        res.status(204).send();
+    } else {
+        res.status(500).json(response.error || "Some error occured while updating the contact.");
+    }
+};
+
+// Delete a 'contact'
+const deleteContact = async (req, res) => {
+    const userId = new ObjectId(req.params.id);
+    const response = await mongodb.getDb().db().collection('contatcs').remove({_id: userId}, true);
+    console.log(response);
+    if (response.deleteCount > 0) {
+        res.status(204).send();
+    } else {
+        res.status(500).json(response.error || 'Some error occurred while deleting the contact.');
+    }
+};
+
+module.exports = { getAllData, getSingleData, createContact, updateContact, deleteContact };
 
 // An object named 'data'
 // const data = {
