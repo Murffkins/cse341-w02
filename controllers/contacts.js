@@ -63,12 +63,12 @@ const updateContact = async (req, res) => {
 // Delete a 'contact'
 const deleteContact = async (req, res) => {
     const userId = new ObjectId(req.params.id);
-    const response = await mongodb.getDb().db().collection('contatcs').remove({_id: userId}, true);
+    const response = await mongodb.getDb().db().collection('contacts').remove({ _id: userId }, true);
     console.log(response);
-    if (response.deleteCount > 0) {
-        res.status(204).send();
+    if (response.deletedCount > 0) {
+      res.status(204).send();
     } else {
-        res.status(500).json(response.error || 'Some error occurred while deleting the contact.');
+      res.status(500).json(response.error || 'Some error occurred while deleting the contact.');
     }
 };
 
