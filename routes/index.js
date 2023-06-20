@@ -2,10 +2,8 @@
 
 const routes = require('express').Router();
 
+routes.use('/', require('./swagger'));
 
-
-// GET /feed/posts
-// Calling the function: 
 routes.use('/contacts', require('./contacts'));
 // localhost:8080/professional/
 
