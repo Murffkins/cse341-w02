@@ -22,6 +22,11 @@ app.use('/index', indexRoutes);
 app.use('/', require('./routes'));
 // localhost:8080/professional
 
+// Added Errorhandling for L06 -- logs to a file so you can see what the errors (if any) are
+process.on('uncaughtException', (err, origin) => {
+    console.log(process.stderr.fd, `Caught exception: ${err}\n` + `Exception origin: ${origin}`);
+});
+
 mongodb.initDb((err, mongodb) => {
     if (err) {
         console.log(err);
