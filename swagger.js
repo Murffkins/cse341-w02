@@ -3,9 +3,10 @@ const swaggerAutogen = require('swagger-autogen')();
 const doc = {
   info: {
     title: 'My API',
-    description: 'Temple API'
+    description: 'Contacts API'
   },
-  host: 'localhost:8080',
+  // host: 'localhost:8080',
+  host: 'cse341-project2-tv5z.onrender.com',
   schemes: ['http']
 };
 
