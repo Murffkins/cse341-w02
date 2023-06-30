@@ -5,61 +5,71 @@ const ObjectId = require('mongodb').ObjectId;
 
 
 // Added Errorhandling to new getAllData for L06
-const getAllData = (req, res) => {
-    mongodb
-        .getDb()
-        .db()
-        .collection('contacts')
-        .find()
-        .toArray((err, lists) => {
-            if (err) {
-                res.status(400).json({ message: err });
-            }
-            res.setHeader('Content-Type', 'application/json');
-            res.status(200).json(lists);
-        });
-};
+// const getAllData = (req, res) => {
+//     mongodb
+//         .getDb()
+//         .db()
+//         .collection('contacts')
+//         .find()
+//         .toArray((err, lists) => {
+//             if (err) {
+//                 res.status(400).json({ message: err });
+//             }
+//             res.setHeader('Content-Type', 'application/json');
+//             res.status(200).json(lists);
+//         });
+// };
 
 // Added validation for L06
-const getSingleData = (req, res) => {
-    if (!ObjectId.isValid(req.params.id)) {
-        res.status(400).json('Must use a valid contact id to find a contact.');
-    }
-    const userId = new ObjectId(req.params.id);
-    mongodb
-        .getDb()
-        .db()
-        .collection('contacts')
-        .find({ _id: userId })
-        .toArray((err, result) => {
-            // Added Errorhandling to new getSingleData for L06
-            if (err) {
-                res.status(400).json({ message: err });
-            }
-            res.setHeader('Content-Type', 'application/json');
-            res.status(200).json(result[0]);
-        });
-};
-
-// // Get all the 'contacts' data
-//     const getAllData = async (req, res, next) => {
-//         // Uses 'getDb' instead of 'initDb'
-//         const result = await mongodb.getDb().db().collection('contacts').find();
-//         result.toArray().then((lists) => {
-//             res.setHeader('Content-Type', 'application/json');
-//             res.status(200).json(lists); 
-//         });
-//     };
-
-// // Get a single 'contact' data
-//     const getSingleData = async (req, res, next) => {
+// const getSingleData = (req, res) => {
+//     if (!ObjectId.isValid(req.params.id)) {
+//         res.status(400).json('Must use a valid contact id to find a contact.');
+//     }
 //     const userId = new ObjectId(req.params.id);
-//     const result = await mongodb.getDb().db().collection('contacts').find({_id: userId});
-//     result.toArray().then((lists) => {
-//         res.setHeader('Content-Type', 'application/json');
-//         res.status(200).json(lists[0]);
-//     });
-//     };
+//     mongodb
+//         .getDb()
+//         .db()
+//         .collection('contacts')
+//         .find({ _id: userId })
+//         .toArray((err, result) => {
+//             // Added Errorhandling to new getSingleData for L06
+//             if (err) {
+//                 res.status(400).json({ message: err });
+//             }
+//             res.setHeader('Content-Type', 'application/json');
+//             res.status(200).json(result[0]);
+//         });
+// };
+
+// Get all the 'contacts' data
+    const getAllData = async (req, res, next) => {
+        // Uses 'getDb' instead of 'initDb'
+        try {
+            const result = await mongodb.getDb().db().collection('contacts').find();
+            result.toArray().then((lists) => {
+            res.setHeader('Content-Type', 'application/json');
+            res.status(200).json(lists); 
+        });
+        } catch (error) {
+            console.log(error);
+        }
+        
+    };
+
+// Get a single 'contact' data
+    const getSingleData = async (req, res, next) => {
+        try {
+            const userId = new ObjectId(req.params.id);
+            const result = await mongodb.getDb().db().collection('contacts').find({_id: userId});
+            result.toArray().then((lists) => {
+            res.setHeader('Content-Type', 'application/json');
+            res.status(200).json(lists[0]);
+            });
+        } catch (error) {
+            console.log(error);
+        }
+    
+    };
 
 // Create a new 'contact'
 const createContact = async (req, res) => {
