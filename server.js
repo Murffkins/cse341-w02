@@ -4,6 +4,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 // const MongoClient = require('mongodb').MongoClient; Do I need this? Erase
+const cors = require('cors');
 const mongodb = require('./db/connect');
 // const indexRoutes = require('./routes'); Do I need this? Erase
 
