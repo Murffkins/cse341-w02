@@ -8,7 +8,7 @@
   "host": "contacts-4l5h.onrender.com",
   "basePath": "/",
   "schemes": [
-    "http"
+    "https"
   ],
   "paths": {
     "/api-docs": {
